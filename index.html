@@ -1,217 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PaperCut MF M&S Quotation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EPIC Proposal Generator</title>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/print.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container-fluid">
+<!-- ===========================================================
+PAGE 1
+============================================================ -->
 
-<div class="row vh-100">
+<div class="page">
 
-    <!-- ===========================
-         LEFT PANEL
-    ============================ -->
+    <img src="images/header.png" class="header">
 
-    <div class="col-lg-4 bg-white border-end p-4 sidebar">
+    <div class="topline">
 
-        <h3 class="fw-bold text-danger mb-4">
-            EPIC Proposal Generator
-        </h3>
-
-        <!-- Customer -->
-
-        <div class="card shadow-sm mb-4">
-
-            <div class="card-header fw-bold">
-
-                Customer Information
-
-            </div>
-
-            <div class="card-body">
-
-                <div class="mb-3">
-                    <label class="form-label">Customer Name</label>
-                    <input class="form-control" id="customerName">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Address</label>
-                    <textarea class="form-control" id="customerAddress" rows="3"></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Contact Person</label>
-                    <input class="form-control" id="contactPerson">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input class="form-control" id="customerEmail">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Telephone</label>
-                    <input class="form-control" id="telephone">
-                </div>
-
-            </div>
-
+        <div class="date">
+            <strong>Date:</strong> 08 July 2026
         </div>
 
-        <!-- Proposal -->
-
-        <div class="card shadow-sm mb-4">
-
-            <div class="card-header fw-bold">
-
-                Proposal Details
-
-            </div>
-
-            <div class="card-body">
-
-                <div class="mb-3">
-
-                    <label class="form-label">Proposal Date</label>
-
-                    <input type="date"
-                           class="form-control"
-                           id="proposalDate">
-
-                </div>
-
-                <div class="mb-3">
-
-                    <label class="form-label">
-
-                        Proposal Number
-
-                    </label>
-
-                    <input class="form-control"
-                           id="proposalNumber">
-
-                </div>
-
-                <div class="mb-3">
-
-                    <label class="form-label">
-
-                        Customer Reference
-
-                    </label>
-
-                    <input class="form-control"
-                           id="customerReference">
-
-                </div>
-
-                <div class="mb-3">
-
-                    <label class="form-label">
-
-                        Subject
-
-                    </label>
-
-                    <input class="form-control"
-                           id="subject">
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Buttons -->
-
-        <div class="d-grid gap-2">
-
-            <button class="btn btn-primary btn-lg">
-
-                Preview
-
-            </button>
-
-            <button class="btn btn-success btn-lg">
-
-                Print PDF
-
-            </button>
-
+        <div class="reference">
+            <strong>Ref:</strong> EP/2026/DXBEPC/DS0708
         </div>
 
     </div>
 
-    <!-- ===========================
-         RIGHT PANEL
-    ============================ -->
+    <h2 class="quotation-title">
+        QUOTATION
+    </h2>
 
-    <div class="col-lg-8 bg-light overflow-auto p-5">
 
-        <div class="paper">
+    <table class="quotation-table">
 
-            <div class="text-center py-5">
+        <tr>
 
-                <h2 class="text-danger">
+            <td class="label">
+                Customer Name:
+            </td>
 
-                    EPIC Proposal Generator
+            <td class="value">
+                Mott McDonald
+            </td>
 
-                </h2>
+            <td class="label">
+                Date:
+            </td>
 
-                <p class="text-muted">
+            <td class="value">
+                08/07/2026
+            </td>
 
-                    Proposal Preview
+        </tr>
 
-                </p>
+        <tr>
 
-                <hr>
+            <td class="label">
+                Address:
+            </td>
 
-                <p>
+            <td class="value">
+                DUBAI United Arab Emirates
+            </td>
 
-                    This area will become your
-                    exact two-page proposal preview.
+            <td class="label">
+                Reference No:
+            </td>
 
-                </p>
+            <td class="value">
+                2025/DXB/GIC/MPS-0615
+            </td>
 
-                <p>
+        </tr>
 
-                    Every value entered on the left
-                    will automatically appear here.
+        <tr>
 
-                </p>
+            <td class="label">
+                Attn:
+            </td>
 
-            </div>
+            <td class="value">
+                Syed Mohainudeen Mohamed
+            </td>
 
-        </div>
+            <td class="label">
+                Graphic Contact:
+            </td>
 
+            <td class="value">
+                Shiv Pandey
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td class="label">
+                Tel:
+            </td>
+
+            <td class="value">
+                -
+            </td>
+
+            <td class="label">
+                Tel:
+            </td>
+
+            <td class="value">
+                +971 554727458
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td class="label">
+                Email:
+            </td>
+
+            <td class="value">
+                SyedMohainudeen.Mohamed@mottmac.com
+            </td>
+
+            <td class="label">
+                Email:
+            </td>
+
+            <td class="value">
+                Shiv@epicsolutionsme.com
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td class="label">
+                Subject:
+            </td>
+
+            <td colspan="3" class="value">
+                Proposal for Papercut MF Print Management solution support renewal - 1 Year
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td class="label">
+                Customer Reference:
+            </td>
+
+            <td colspan="3" class="value">
+                C-SW7SSX
+            </td>
+
+        </tr>
+
+    </table>
+
+
+    <div class="paragraph">
+
+        Dear sir / madam,
+
+        <br><br>
+
+        We take this opportunity to thank you for the keen interest shown in our products.
+        The OEM support for your software <strong>C-SW7SSX</strong> is set to expire on
+        <strong>17 July 2026</strong>.
+
+        To ensure uninterrupted access to updates, technical assistance,
+        and system enhancements, it is essential to renew your support.
+
+        Please find below the financial offer and scope of work for the renewal.
+
+    </div>
+
+
+
+    <div class="section-title">
+        Commercials
+    </div>
+
+
+    <table class="commercial-table">
+
+        <thead>
+
+        <tr>
+
+            <th style="width:60px;">
+                Item
+            </th>
+
+            <th>
+                Description
+            </th>
+
+            <th style="width:70px;">
+                Qty
+            </th>
+
+            <th style="width:170px;">
+                Total Charges (AED)
+            </th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr>
+
+            <td class="center">
+                1
+            </td>
+
+            <td>
+
+                Papercut MF Emd License support renewal for
+                <strong>1 Year</strong>
+
+                <br>
+
+                x 6 devices
+
+                <br>
+
+                Local remote support
+
+            </td>
+
+            <td class="center">
+                1
+            </td>
+
+            <td class="price">
+                4,296.00
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+
+
+    <div class="section-title">
+        Scope Of Work
+    </div>
+
+
+    <p>
+
+        The MPS Support scope is limited to the following.
+
+        Any additional requirements have to be discussed in detail
+        and can be quoted at additional cost.
+
+    </p>
+
+
+
+    <h3>
+        INSTALLATION
+    </h3>
+
+    <ul>
+
+        <li>
+            Procurement of support renewal license from Papercut MF
+        </li>
+
+        <li>
+            Installation of support renewal license in coordination
+            with customer IT
+        </li>
+
+    </ul>
+
+
+
+    <h3>
+        SERVICE SUPPORT FOR PMS UNDER VALID SUPPORT
+    </h3>
+
+
+    <p>
+
+        <strong>Software Updates &amp; Upgrades</strong> –
+        Access to the latest Papercut MF releases,
+        security patches,
+        Minor updates and free Major updates during valid support period.
+
+    </p>
+
+    <p>
+
+        <strong>License Management</strong> –
+        Ensuring compliance with licensing requirements
+        and assisting with renewals or modifications.
+
+    </p>
+
+    <p>
+
+        <strong>Technical Support</strong> –
+        Assistance via email,
+        phone,
+        and remote support for troubleshooting and issue resolution,
+        Ticket escalation to OEM through Epic.
+
+    </p>
+
+    <p>
+
+        <strong>Working hours</strong> –
+        Support by Epic during office hours
+        (8AM to 5:30 PM Monday to Friday)
+
+    </p>
+
+    <p>
+
+        <strong>Support escalation to our principals</strong> –
+
+        When required.
+
+        Such escalations shall pause the SLA timeline
+        for ticket resolution until Principal response
+        or resolution has been received.
+
+    </p>
+
+    <p>
+
+        <strong>Support Limitation</strong> –
+
+        Onsite / remote support from Epic is applicable
+        for issues related to inherent software errors
+        in the Print Management Software or Epic's bespoke applications.
+
+        However,
+
+        service disruptions caused by the client's
+        internal IT infrastructure including network issues
+        or third-party system dependencies fall outside
+        the scope of Epic's direct support.
+
+    </p>
+
+
+    <img src="images/footer.png" class="footer">
+
+    <div class="page-number">
+        Page 1 of 2
     </div>
 
 </div>
 
-</div>
-
-<script src="js/app.js"></script>
-
-</body>
-
-</html>
+<!-- ====================== PAGE 2 STARTS NEXT ====================== -->
