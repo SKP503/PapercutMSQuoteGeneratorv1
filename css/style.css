@@ -1,0 +1,166 @@
+/* ==========================================================
+   PapercutMSQuoteGeneratorV1
+   style.css
+   ========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    height:100%;
+    font-family:Segoe UI,Arial,sans-serif;
+    background:#ececec;
+}
+
+/* ==========================
+   LEFT PANEL
+========================== */
+
+.sidebar{
+
+    height:100vh;
+    overflow:auto;
+    background:#ffffff;
+    border-right:1px solid #dcdcdc;
+
+}
+
+.card{
+
+    border:none;
+    border-radius:10px;
+    margin-bottom:20px;
+
+}
+
+.card-header{
+
+    background:#c8102e;
+    color:white;
+    font-weight:600;
+    border-radius:10px 10px 0 0 !important;
+
+}
+
+.form-control{
+
+    border-radius:6px;
+
+}
+
+.form-control:focus{
+
+    border-color:#c8102e;
+    box-shadow:0 0 0 .15rem rgba(200,16,46,.15);
+
+}
+
+/* ==========================
+   RIGHT PANEL
+========================== */
+
+.paper{
+
+    width:210mm;
+    min-height:297mm;
+
+    margin:auto;
+
+    background:white;
+
+    box-shadow:0 0 20px rgba(0,0,0,.15);
+
+    padding:20mm;
+
+}
+
+/* ==========================
+   PLACEHOLDER
+========================== */
+
+.paper h2{
+
+    font-size:34px;
+    font-weight:700;
+
+}
+
+.paper p{
+
+    font-size:16px;
+    color:#666;
+    line-height:1.8;
+
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.btn-primary{
+
+    background:#005eb8;
+    border:none;
+
+}
+
+.btn-success{
+
+    background:#198754;
+    border:none;
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#bdbdbd;
+    border-radius:20px;
+
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1200px){
+
+.paper{
+
+    transform:scale(.85);
+
+    transform-origin:top center;
+
+}
+
+}
+
+@media(max-width:992px){
+
+.sidebar{
+
+    height:auto;
+
+}
+
+.paper{
+
+    width:100%;
+    min-height:auto;
+    transform:none;
+
+}
+
+}
