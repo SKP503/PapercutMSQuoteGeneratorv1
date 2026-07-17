@@ -1,0 +1,381 @@
+/* ============================================================
+   PapercutMSQuoteGeneratorV1  —  style.css
+   Screen styling: editor panel + A4 proposal preview
+   ============================================================ */
+
+:root {
+    --ricoh-red: #cc0000;
+    --ink: #231f20;
+    --muted: #555;
+    --bar-grey: #8c8c8c;
+    --line: #000;
+    --table-line: #000;
+    --page-w: 210mm;
+    --page-h: 297mm;
+    --page-pad-x: 18mm;
+    --sans: "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: #d9dadd;
+    font-family: var(--sans);
+    color: var(--ink);
+}
+
+/* ---------- App shell ---------- */
+.app {
+    display: flex;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* ---------- Editor panel ---------- */
+.editor {
+    width: 340px;
+    flex: 0 0 340px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #c9cbd0;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-head {
+    padding: 18px 20px 12px;
+    border-bottom: 1px solid #ececef;
+}
+.editor-head h2 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--ink);
+}
+.editor-sub {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.editor-scroll {
+    overflow-y: auto;
+    padding: 12px 20px 40px;
+    flex: 1;
+}
+
+.edit-group {
+    border: 1px solid #e3e4e8;
+    border-radius: 8px;
+    padding: 12px 14px 14px;
+    margin: 0 0 16px;
+}
+.edit-group legend {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--ricoh-red);
+    padding: 0 6px;
+}
+
+.editor label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 10px;
+}
+.editor label:last-child { margin-bottom: 0; }
+
+.editor input[type="text"],
+.editor input[type="number"],
+.editor textarea {
+    width: 100%;
+    margin-top: 4px;
+    padding: 7px 9px;
+    border: 1px solid #cfd2d8;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 13px;
+    color: var(--ink);
+    background: #fff;
+}
+.editor input:focus,
+.editor textarea:focus {
+    outline: none;
+    border-color: var(--ricoh-red);
+    box-shadow: 0 0 0 2px rgba(204,0,0,.12);
+}
+.editor textarea { resize: vertical; }
+
+.inline-field {
+    display: inline-block;
+    width: 48%;
+    margin-top: 10px;
+}
+.inline-field:nth-of-type(odd) { margin-right: 3%; }
+
+/* ---------- Line-item editor rows ---------- */
+.li-row {
+    border: 1px solid #e3e4e8;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #fafafb;
+    position: relative;
+}
+.li-row textarea {
+    min-height: 46px;
+}
+.li-grid {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+.li-grid label { flex: 1; margin: 0; }
+.li-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: none;
+    background: transparent;
+    color: var(--ricoh-red);
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+}
+.li-remove:hover { color: #900; }
+
+/* ---------- Buttons ---------- */
+.btn {
+    font: inherit;
+    font-size: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 8px 12px;
+}
+.btn-add {
+    width: 100%;
+    background: #fff;
+    border: 1px dashed var(--ricoh-red);
+    color: var(--ricoh-red);
+    margin-top: 4px;
+}
+.btn-add:hover { background: #fff3f3; }
+
+.editor-actions {
+    margin-top: 8px;
+}
+.btn-print {
+    width: 100%;
+    background: var(--ricoh-red);
+    color: #fff;
+    padding: 11px;
+    font-weight: 600;
+}
+.btn-print:hover { background: #a80000; }
+
+/* ---------- Preview area ---------- */
+.preview {
+    flex: 1;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* ---------- A4 page ---------- */
+.page {
+    width: var(--page-w);
+    min-height: var(--page-h);
+    background: #fff;
+    box-shadow: 0 3px 14px rgba(0,0,0,.18);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.page-header,
+.page-footer {
+    flex: 0 0 auto;
+    line-height: 0;
+}
+.page-header img,
+.page-footer img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.page-content {
+    flex: 1 1 auto;
+    padding: 8mm var(--page-pad-x) 6mm;
+    font-size: 10.3pt;
+    line-height: 1.45;
+}
+
+/* ---------- Document meta row ---------- */
+.doc-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9.5pt;
+    margin-bottom: 6px;
+}
+.doc-ref { color: var(--muted); }
+
+/* ---------- Quotation title ---------- */
+.quotation-title h1 {
+    text-align: center;
+    font-size: 15pt;
+    font-weight: 700;
+    letter-spacing: .02em;
+    margin: 2px 0 8px;
+}
+
+/* ---------- Customer info table (compact) ---------- */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 9.3pt;
+}
+.info-table td {
+    border: 1px solid var(--table-line);
+    padding: 3px 6px;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+.info-table td.label {
+    width: 15%;
+    font-weight: 700;
+    background: #fff;
+}
+.info-table td.value { width: 35%; }
+
+/* ---------- Intro ---------- */
+.intro { margin: 10px 0 4px; }
+.intro p { margin: 0 0 8px; text-align: justify; }
+
+/* ---------- Section bar heading ---------- */
+.section-bar {
+    background: var(--bar-grey);
+    color: #fff;
+    font-size: 10.5pt;
+    font-weight: 700;
+    padding: 3px 8px;
+    margin: 12px 0 8px;
+}
+
+/* ---------- Data (commercials) table ---------- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+}
+.data-table thead th {
+    background: #d9d9d9;
+    text-align: left;
+    font-weight: 700;
+    padding: 5px 8px;
+    border: 1px solid var(--table-line);
+}
+.data-table tbody td {
+    padding: 5px 8px;
+    border: 1px solid var(--table-line);
+    vertical-align: top;
+}
+.data-table .col-item { width: 8%; text-align: center; }
+.data-table .col-desc { width: 62%; }
+.data-table .col-qty  { width: 10%; text-align: center; }
+.data-table .col-charges { width: 20%; text-align: right; }
+.data-table tfoot td {
+    padding: 4px 8px;
+    border: 1px solid var(--table-line);
+    font-size: 9.5pt;
+}
+.data-table tfoot .foot-label {
+    text-align: right;
+    font-weight: 600;
+}
+.data-table tfoot .foot-value {
+    text-align: right;
+    white-space: nowrap;
+}
+.data-table tfoot .grand td {
+    font-weight: 700;
+    background: #f0f0f0;
+}
+
+/* ---------- Scope / lists ---------- */
+.subheading {
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 12px 0 6px;
+    letter-spacing: .02em;
+}
+.scope-of-work p,
+.customer-scope p,
+.out-of-scope li,
+.customer-scope li { text-align: justify; }
+.scope-of-work p { margin: 0 0 7px; }
+.scope-of-work ul,
+.out-of-scope ol { margin: 0 0 8px; padding-left: 20px; }
+.scope-of-work li,
+.out-of-scope li { margin-bottom: 4px; }
+.customer-scope p { margin: 0 0 8px; }
+
+/* ---------- Terms table ---------- */
+.terms-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+}
+.terms-table td {
+    padding: 3px 6px;
+    vertical-align: top;
+}
+.terms-table td.label {
+    width: 22%;
+    font-weight: 700;
+}
+.acceptance { margin-top: 10px; text-align: justify; }
+
+/* ---------- Inline editable fields ---------- */
+[data-field] {
+    outline: none;
+}
+[contenteditable="true"][data-field]:hover {
+    background: #fff6cc;
+    cursor: text;
+}
+[contenteditable="true"][data-field]:focus {
+    background: #fff2b8;
+    box-shadow: 0 0 0 1px #e0b500;
+}
+
+/* ---------- Page break (screen: gap only) ---------- */
+.page-break {
+    width: var(--page-w);
+    height: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+    .app { flex-direction: column; }
+    .editor {
+        position: static;
+        width: 100%;
+        flex: none;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #c9cbd0;
+    }
+    .editor-scroll { max-height: 50vh; }
+    .page { width: 100%; min-height: auto; }
+    .page-break { width: 100%; }
+}
