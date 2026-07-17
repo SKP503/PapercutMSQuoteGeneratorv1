@@ -23,17 +23,11 @@
 
                 <fieldset class="edit-group">
                     <legend>Document</legend>
-                    <label>Proposal Date
+                    <label>Date
                         <input type="text" data-bind="proposal-date" value="8ᵗʰ July 2026">
                     </label>
-                    <label>Date (table)
-                        <input type="text" data-bind="proposal-date-short" value="08/07/2026">
-                    </label>
-                    <label>Proposal Reference
-                        <input type="text" data-bind="proposal-reference" value="EP/ 2026/DXBEPC/DS0708">
-                    </label>
                     <label>Reference No
-                        <input type="text" data-bind="reference-no" value="2025/DXB/GIC/MPS-0615">
+                        <input type="text" data-bind="proposal-reference" value="EP/ 2026/DXBEPC/DS0708">
                     </label>
                 </fieldset>
 
@@ -86,13 +80,6 @@
                     <legend>Commercials</legend>
                     <div id="line-items-editor"></div>
                     <button type="button" class="btn btn-add" id="add-row">+ Add line item</button>
-
-                    <label class="inline-field">VAT %
-                        <input type="number" id="vat-rate" value="5" min="0" step="0.5">
-                    </label>
-                    <label class="inline-field">Overall discount (AED)
-                        <input type="number" id="overall-discount" value="0" min="0" step="0.01">
-                    </label>
                 </fieldset>
 
                 <fieldset class="edit-group">
@@ -146,13 +133,13 @@
                                     <td class="label">Customer Name:</td>
                                     <td class="value"><span data-field="customer-name">Mott McDonald</span></td>
                                     <td class="label">Date:</td>
-                                    <td class="value"><span data-field="proposal-date-short">08/07/2026</span></td>
+                                    <td class="value"><span data-field="proposal-date">8ᵗʰ July 2026</span></td>
                                 </tr>
                                 <tr>
                                     <td class="label">Address:</td>
                                     <td class="value"><span data-field="customer-address">DUBAI United Arab Emirates</span></td>
                                     <td class="label">Reference No:</td>
-                                    <td class="value"><span data-field="reference-no">2025/DXB/GIC/MPS-0615</span></td>
+                                    <td class="value"><span data-field="proposal-reference">EP/ 2026/DXBEPC/DS0708</span></td>
                                 </tr>
                                 <tr>
                                     <td class="label">Attn:</td>
