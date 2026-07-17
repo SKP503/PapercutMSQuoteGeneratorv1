@@ -1,0 +1,59 @@
+/* ============================================================
+   PapercutMSQuoteGeneratorV1  —  print.css
+   Print / PDF: two independent A4 sheets, no editor
+   ============================================================ */
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+
+    body { background: #fff; }
+
+    /* Hide the editor entirely when printing */
+    .editor { display: none !important; }
+
+    .app { display: block; }
+
+    .preview {
+        padding: 0;
+        gap: 0;
+        display: block;
+    }
+
+    /* Each page becomes an exact A4 sheet */
+    .page {
+        width: 210mm;
+        min-height: 297mm;
+        height: 297mm;
+        box-shadow: none;
+        margin: 0;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden;
+    }
+    .page:last-of-type {
+        page-break-after: auto;
+        break-after: auto;
+    }
+
+    /* The break element forces the split and takes no space */
+    .page-break {
+        display: block;
+        height: 0;
+        page-break-after: always;
+        break-after: page;
+    }
+
+    /* Kill editable highlighting on paper */
+    [data-field] {
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    /* Keep tables and list blocks from splitting mid-row */
+    tr, li { page-break-inside: avoid; }
+    thead { display: table-header-group; }
+}
