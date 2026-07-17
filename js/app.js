@@ -1,8 +1,8 @@
 /* ============================================================
    PapercutMSQuoteGeneratorV1  —  app.js
    - Two-way binding: form panel  <->  inline proposal fields
-   - Line items: add / remove rows, live totals
-   - VAT, discount, subtotal, grand total calculation
+   - Line items: add / remove rows, live line totals
+   - Single Total (no VAT, no subtotal)
    ============================================================ */
 
 (function () {
@@ -11,10 +11,6 @@
     /* -------------------------------------------------
        1. TEXT FIELD BINDING (form <-> proposal spans)
        ------------------------------------------------- */
-    // Every editable value in the proposal carries data-field="key".
-    // Every form control carries data-bind="key".
-    // The same key may appear on many spans — all update together.
-
     function proposalNodes(key) {
         return document.querySelectorAll('[data-field="' + key + '"]');
     }
@@ -28,35 +24,29 @@
     // Form input -> proposal
     document.querySelectorAll("[data-bind]").forEach(function (input) {
         var key = input.getAttribute("data-bind");
-        // initialise proposal from the form's starting value
         setField(key, input.value);
-
         input.addEventListener("input", function () {
             setField(key, input.value);
         });
     });
 
-    // Proposal inline edit -> form (make spans editable, sync back)
+    // Proposal inline edit -> form
     document.querySelectorAll("[data-field]").forEach(function (node) {
         node.setAttribute("contenteditable", "true");
         node.setAttribute("spellcheck", "false");
-
         node.addEventListener("input", function () {
             var key = node.getAttribute("data-field");
-            // update sibling proposal spans with the same key
             proposalNodes(key).forEach(function (twin) {
                 if (twin !== node) twin.textContent = node.textContent;
             });
-            // update the matching form control
             var input = document.querySelector('[data-bind="' + key + '"]');
             if (input) input.value = node.textContent;
         });
     });
 
     /* -------------------------------------------------
-       2. COMMERCIALS — LINE ITEMS + CALCULATIONS
+       2. COMMERCIALS — LINE ITEMS + TOTAL (no VAT)
        ------------------------------------------------- */
-
     var lineItems = [
         {
             desc: "Papercut MF Emd License support renewal for 1 Year x 6 devices\nLocal remote support",
@@ -68,8 +58,6 @@
     var editorList = document.getElementById("line-items-editor");
     var tableBody  = document.getElementById("line-items-body");
     var tableFoot  = document.getElementById("line-items-foot");
-    var vatInput   = document.getElementById("vat-rate");
-    var discInput  = document.getElementById("overall-discount");
 
     function money(n) {
         return n.toLocaleString("en-US", {
@@ -84,7 +72,14 @@
         return q * p;
     }
 
-    /* ---- Render the editor rows (left panel) ---- */
+    function escapeHtml(s) {
+        return String(s)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+    }
+
+    /* ---- Editor rows (left panel) ---- */
     function renderEditorRows() {
         editorList.innerHTML = "";
         lineItems.forEach(function (item, i) {
@@ -106,7 +101,6 @@
             editorList.appendChild(row);
         });
 
-        // wire inputs
         editorList.querySelectorAll("[data-field-edit]").forEach(function (el) {
             el.addEventListener("input", function () {
                 var i = parseInt(el.getAttribute("data-i"), 10);
@@ -128,14 +122,13 @@
         });
     }
 
-    /* ---- Render the proposal commercials table (right) ---- */
+    /* ---- Proposal commercials table (right) ---- */
     function renderProposalTable() {
-        // body
         tableBody.innerHTML = "";
-        var subtotal = 0;
+        var total = 0;
         lineItems.forEach(function (item, i) {
             var lt = lineTotal(item);
-            subtotal += lt;
+            total += lt;
             var tr = document.createElement("tr");
             tr.innerHTML =
                 '<td class="col-item">' + (i + 1) + '</td>' +
@@ -145,52 +138,20 @@
             tableBody.appendChild(tr);
         });
 
-        // totals
-        var discount = parseFloat(discInput.value) || 0;
-        var vatRate  = parseFloat(vatInput.value) || 0;
-        var afterDiscount = subtotal - discount;
-        if (afterDiscount < 0) afterDiscount = 0;
-        var vatAmount = afterDiscount * (vatRate / 100);
-        var grand = afterDiscount + vatAmount;
-
-        var rows =
-            footRow("Subtotal (AED)", money(subtotal));
-        if (discount > 0) {
-            rows += footRow("Discount (AED)", "-" + money(discount));
-        }
-        rows += footRow("VAT " + vatRate + "% (AED)", money(vatAmount));
-        rows += '<tr class="grand">' +
-                    '<td></td><td></td>' +
-                    '<td class="foot-label">Grand Total (AED)</td>' +
-                    '<td class="foot-value">' + money(grand) + '</td>' +
-                '</tr>';
-        tableFoot.innerHTML = rows;
+        // Single Total row (no VAT, no subtotal)
+        tableFoot.innerHTML =
+            '<tr class="grand">' +
+                '<td></td><td></td>' +
+                '<td class="foot-label">Total (AED)</td>' +
+                '<td class="foot-value">' + money(total) + '</td>' +
+            '</tr>';
     }
 
-    function footRow(label, value) {
-        return '<tr>' +
-                    '<td></td><td></td>' +
-                    '<td class="foot-label">' + label + '</td>' +
-                    '<td class="foot-value">' + value + '</td>' +
-               '</tr>';
-    }
-
-    function escapeHtml(s) {
-        return String(s)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;");
-    }
-
-    /* ---- Add row ---- */
     document.getElementById("add-row").addEventListener("click", function () {
         lineItems.push({ desc: "", qty: 1, price: 0 });
         renderEditorRows();
         renderProposalTable();
     });
-
-    vatInput.addEventListener("input", renderProposalTable);
-    discInput.addEventListener("input", renderProposalTable);
 
     /* -------------------------------------------------
        3. PRINT
@@ -199,9 +160,7 @@
         window.print();
     });
 
-    /* -------------------------------------------------
-       INIT
-       ------------------------------------------------- */
+    /* INIT */
     renderEditorRows();
     renderProposalTable();
 
