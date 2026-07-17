@@ -141,8 +141,7 @@
         // Single Total row (no VAT, no subtotal)
         tableFoot.innerHTML =
             '<tr class="grand">' +
-                '<td></td><td></td>' +
-                '<td class="foot-label">Total (AED)</td>' +
+                '<td class="foot-label" colspan="3">Total (AED)</td>' +
                 '<td class="foot-value">' + money(total) + '</td>' +
             '</tr>';
     }
