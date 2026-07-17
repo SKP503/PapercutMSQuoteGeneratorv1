@@ -10,7 +10,11 @@
 
 @media print {
 
-    body { background: #fff; }
+    html, body {
+        background: #fff;
+        margin: 0;
+        padding: 0;
+    }
 
     /* Hide the editor entirely when printing */
     .editor { display: none !important; }
@@ -23,28 +27,39 @@
         display: block;
     }
 
-    /* Each page becomes an exact A4 sheet */
+    /* Each page fills exactly one A4 sheet.
+       Use min-height (not fixed height) so content never
+       overflows into a phantom 3rd page, and the footer
+       stays pinned at the bottom via flex. */
     .page {
         width: 210mm;
-        min-height: 297mm;
-        height: 297mm;
+        min-height: 296mm;   /* just under 297 to avoid rounding spill */
+        height: auto;
         box-shadow: none;
         margin: 0;
+        display: flex;
+        flex-direction: column;
         page-break-after: always;
         break-after: page;
+        page-break-inside: avoid;
         overflow: hidden;
     }
     .page:last-of-type {
         page-break-after: auto;
         break-after: auto;
+        min-height: 0;
     }
 
-    /* The break element forces the split and takes no space */
+    /* Footer pinned to the bottom of each sheet */
+    .page-content { flex: 1 1 auto; }
+    .page-footer  { margin-top: auto; }
+
+    /* The break element takes no space (page handles the break) */
     .page-break {
         display: block;
         height: 0;
-        page-break-after: always;
-        break-after: page;
+        margin: 0;
+        padding: 0;
     }
 
     /* Kill editable highlighting on paper */
@@ -53,7 +68,7 @@
         box-shadow: none !important;
     }
 
-    /* Keep tables and list blocks from splitting mid-row */
+    /* Keep rows and list items from splitting across pages */
     tr, li { page-break-inside: avoid; }
     thead { display: table-header-group; }
 }
